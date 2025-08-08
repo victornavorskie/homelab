@@ -1,0 +1,22 @@
+/*!
+ * GlassFin core variables
+ * Follows Jellyfin custom CSS guidelines and Flow modular structure.
+ */
+:root {
+  --gf-bg: #0b0e12;
+  --gf-fg: #e7ecf2;
+  --gf-muted: #9aa7b6;
+  --gf-accent-h: 210;
+  --gf-accent-s: 100%;
+  --gf-accent-l: 60%;
+  --gf-accent: hsl(var(--gf-accent-h) var(--gf-accent-s) var(--gf-accent-l));
+  --gf-radius: 14px;
+  --gf-border: rgba(255,255,255,.10);
+  --gf-glass-blur: 14px;
+  --gf-glass-alpha: .14;
+  --gf-glass-stroke: rgba(255,255,255,.12);
+  --gf-card-bg: rgba(255,255,255,var(--gf-glass-alpha));
+  --gf-card-bg-fallback: rgba(20,24,30,.72);
+  --gf-shadow-1: 0 6px 22px rgba(0,0,0,.35);
+  --gf-shadow-2: 0 12px 48px rgba(0,0,0,.45);
+}

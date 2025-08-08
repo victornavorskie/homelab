@@ -1,0 +1,29 @@
+/*!
+ * Page layout and glass surfaces
+ */
+body {
+  color: var(--gf-fg);
+  background:
+    radial-gradient(1200px 700px at 10% 0%, rgba(35,80,160,.18), transparent 60%),
+    radial-gradient(900px 600px at 100% 100%, rgba(0,200,180,.12), transparent 50%),
+    var(--gf-bg);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .listItem, .infoWrapper, .dashboardSection, .content-primary, .detailSection, .overview, .emby-scroller, .scroller, .emby-select, .emby-input,
+  .detailPagePrimaryContainer, .detailPageContent {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .listItem, .infoWrapper, .dashboardSection, .content-primary, .detailSection, .overview, .emby-scroller, .scroller, .emby-select, .emby-input,
+  .detailPagePrimaryContainer, .detailPageContent {
+    background: var(--gf-card-bg-fallback) !important;
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+}
