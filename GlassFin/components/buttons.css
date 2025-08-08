@@ -1,0 +1,8 @@
+/*!
+ * Accent buttons
+ */
+.button-submit, .emby-button.submit, .fab, .raised.play, .btnPlay {
+  background: var(--gf-accent) !important;
+  color: #000 !important;
+  border: 0 !important;
+}
