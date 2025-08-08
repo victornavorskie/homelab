@@ -1,5 +1,0 @@
-/* === CARDS ================================================================ */
-.cardContent, .cardBox, .cardScalable, .cardOverlayContainer {
-  border-radius: calc(var(--gf-radius) - 2px);
-  overflow: hidden;
-}

@@ -1,6 +1,206 @@
+/*!
+ * GlassFin — Jellyfin glassy dark theme (modular, multi-flavor)
+ * Author: ChatGPT (per user request)
+ * Version: 1.2.0 (Oneliner)
+ *
+ * INSTRUCTIONS:
+ * 1. Copy the entire content of this file.
+ * 2. Paste it into Jellyfin's Custom CSS field (Dashboard > General > Branding).
+ * 3. To change the theme, uncomment ONE of the theme blocks below.
+ */
 
-/*! GlassFin oneliner (dark + extras + icons) — change the last line to pick another flavor */
-@import url("./GlassFin-main.css");
-@import url("./GlassFin-Extras.css");
-@import url("./GlassFin-Icons.css");
-@import url("./Themes/GlassFin-Dark.css"); /* Pick: GlassFin-Dark.css | GlassFin-Nord.css | GlassFin-Neon.css | GlassFin-TV.css */
+/* === THEMES (UNCOMMENT ONE) =============================================== */
+
+/* @import url("https://YOUR.CDN/GlassFin/Themes/GlassFin-Dark.css"); */
+/* :root { --gf-bg: #0b0e12; --gf-fg: #e7ecf2; --gf-muted: #9aa7b6; --gf-accent-h: 210; --gf-accent-s: 100%; --gf-accent-l: 60%; --gf-glass-blur: 14px; --gf-glass-alpha: .14; } */
+
+/* @import url("https://YOUR.CDN/GlassFin/Themes/GlassFin-Neon.css"); */
+/* :root { --gf-bg: #07070a; --gf-fg: #f0f6ff; --gf-muted: #a5b0c2; --gf-accent-h: 290; --gf-accent-s: 90%; --gf-accent-l: 65%; --gf-glass-blur: 18px; --gf-glass-alpha: .18; } body { background: radial-gradient(1200px 700px at 15% 0%, rgba(160,35,200,.20), transparent 60%), radial-gradient(900px 600px at 100% 100%, rgba(0,220,200,.16), transparent 50%), var(--gf-bg); } */
+
+/* @import url("https://YOUR.CDN/GlassFin/Themes/GlassFin-Nord.css"); */
+/* :root { --gf-bg: #0b1220; --gf-fg: #e5eff7; --gf-muted: #9fb0c3; --gf-accent-h: 220; --gf-accent-s: 80%; --gf-accent-l: 68%; --gf-glass-blur: 16px; --gf-glass-alpha: .16; } */
+
+/* @import url("https://YOUR.CDN/GlassFin/Themes/GlassFin-TV.css"); */
+/* :root { --gf-glass-blur: 0px; --gf-glass-alpha: .10; } */
+
+
+/* === BASE STYLES (DO NOT EDIT) ============================================ */
+
+/* === VARIABLES ============================================================ */
+:root {
+  --gf-bg: #0b0e12;
+  --gf-fg: #e7ecf2;
+  --gf-muted: #9aa7b6;
+  --gf-accent-h: 210;
+  --gf-accent-s: 100%;
+  --gf-accent-l: 60%;
+  --gf-radius: 14px;
+  --gf-border: rgba(255,255,255,.10);
+  --gf-glass-blur: 14px;
+  --gf-glass-alpha: .14;
+  --gf-glass-stroke: rgba(255,255,255,.12);
+  --gf-card-bg: rgba(255,255,255,var(--gf-glass-alpha));
+  --gf-card-bg-fallback: rgba(20,24,30,.72);
+  --gf-shadow-1: 0 6px 22px rgba(0,0,0,.35);
+  --gf-shadow-2: 0 12px 48px rgba(0,0,0,.45);
+}
+
+/* === FONTS ================================================================ */
+@font-face {
+  font-family: "KFGQPC HAFS";
+  src: url("https://raw.githubusercontent.com/rialreem/homelab/main/GlassFin/fonts/KFGQPC-Uthmanic-HAFS-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+:root {
+  --font-latin: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-arabic: "Arslan Wessam B", "KFGQPC HAFS", var(--font-latin);
+}
+html, body { font-family: var(--font-latin); }
+:lang(ar), [dir="rtl"], :lang(ar) * { font-family: var(--font-arabic); }
+
+/* === PAGES ================================================================ */
+body {
+  color: var(--gf-fg);
+  background:
+    radial-gradient(1200px 700px at 10% 0%, rgba(35,80,160,.18), transparent 60%),
+    radial-gradient(900px 600px at 100% 100%, rgba(0,200,180,.12), transparent 50%),
+    var(--gf-bg);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .listItem, .infoWrapper, .dashboardSection, .content-primary, .detailSection, .overview, .emby-scroller, .scroller, .emby-select, .emby-input,
+  .detailPagePrimaryContainer, .detailPageContent {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .listItem, .infoWrapper, .dashboardSection, .content-primary, .detailSection, .overview, .emby-scroller, .scroller, .emby-select, .emby-input,
+  .detailPagePrimaryContainer, .detailPageContent {
+    background: var(--gf-card-bg-fallback) !important;
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+}
+
+/* === HEADER ================================================================ */
+@supports (backdrop-filter: blur(1px)) {
+  .skinHeader, .sectionTabs, .emby-tabs-slider, .mainDrawer, .paperList, .secondaryNav, .pageTitleWithLogo {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .skinHeader, .sectionTabs, .emby-tabs-slider, .mainDrawer, .paperList, .secondaryNav, .pageTitleWithLogo {
+    background: var(--gf-card-bg-fallback) !important;
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+}
+
+/* === DIALOGS ================================================================ */
+@supports (backdrop-filter: blur(1px)) {
+  .dialog, .paper, .formDialogHeader, .formDialogFooter, .actionSheetMenu, .toast {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-2);
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .dialog, .paper, .formDialogHeader, .formDialogFooter, .actionSheetMenu, .toast {
+    background: var(--gf-card-bg-fallback) !important;
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+}
+
+/* === OSD ================================================================ */
+@supports (backdrop-filter: blur(1px)) {
+  .videoOsd, .nowPlayingBar, .playerStatsOverlay, .osdHeader, .osdControls, .osdFooter {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .videoOsd, .nowPlayingBar, .playerStatsOverlay, .osdHeader, .osdControls, .osdFooter {
+    background: var(--gf-card-bg-fallback) !important;
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+}
+
+/* === CARDS ================================================================ */
+.cardContent, .cardBox, .cardScalable, .cardOverlayContainer {
+  border-radius: calc(var(--gf-radius) - 2px);
+  overflow: hidden;
+}
+
+/* === BUTTONS ================================================================ */
+.button-submit, .emby-button.submit, .fab, .raised.play, .btnPlay {
+  background: var(--gf-accent) !important;
+  color: #000 !important;
+  border: 0 !important;
+}
+
+/* === ICONS ================================================================ */
+a[href*="imdb.com"]::before,
+a[href*="themoviedb.org"]::before,
+a[href*="thetvdb.com"]::before {
+  content: "";
+  display: inline-block;
+  margin-inline-end: 0.35em;
+  width: 1.5em;
+  height: 1.5em;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+a[href*="imdb.com"]::before {
+  background-color: #f5c518;
+  -webkit-mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/imdb.svg");
+  mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/imdb.svg");
+}
+a[href*="themoviedb.org"]::before {
+  background-color: #01b4e4;
+  -webkit-mask-image: url("https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded9042015820c17f5c790953a59771233c9272abe27c7bbbeb7.svg");
+  mask-image: url("https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded9042015820c17f5c790953a59771233c9272abe27c7bbbeb7.svg");
+}
+a[href*="thetvdb.com"]::before {
+  background-color: #00a4dc;
+  -webkit-mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/thetvdb.svg");
+  mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/thetvdb.svg");
+}
+
+/* === EXTRAS =============================================================== */
+:root { --gf-card-outline: rgba(255,255,255,.22); }
+.cardScalable:hover .cardOverlayButton, .card:hover .cardOverlayButton {
+  outline: 2px solid var(--gf-card-outline);
+  outline-offset: -2px;
+}
+.castContent, .personCard, .listItem { gap: .25rem; }
+.personCard .cardImageContainer, .personCard .cardImage {
+  max-width: 96px;
+  max-height: 96px;
+  border-radius: 50%;
+}
