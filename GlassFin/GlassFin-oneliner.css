@@ -34,6 +34,7 @@
   --gf-accent-h: 210;
   --gf-accent-s: 100%;
   --gf-accent-l: 60%;
+  --gf-accent: hsl(var(--gf-accent-h) var(--gf-accent-s) var(--gf-accent-l));
   --gf-radius: 14px;
   --gf-border: rgba(255,255,255,.10);
   --gf-glass-blur: 14px;
