@@ -1,0 +1,28 @@
+
+/*! GlassFin-Icons: Provider badges (IMDb/TMDb/TVDB) — v1 uses styled text badges.
+   Replace later with SVG logos if you prefer.
+*/
+a[href*="imdb.com"]::before,
+a[href*="themoviedb.org"]::before,
+a[href*="thetvdb.com"]::before {
+  display:inline-block;
+  margin-inline-end:.35em;
+  padding:.12em .45em;
+  border-radius:.35em;
+  font-weight:700;
+  font-size:.85em;
+  line-height:1;
+}
+
+a[href*="imdb.com"]::before {
+  content:"IMDb";
+  background:#f5c518; color:#000;
+}
+a[href*="themoviedb.org"]::before {
+  content:"TMDb";
+  background:#01b4e4; color:#001d2d;
+}
+a[href*="thetvdb.com"]::before {
+  content:"TVDB";
+  background:#00a4dc; color:#001a26;
+}

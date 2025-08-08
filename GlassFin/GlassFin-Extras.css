@@ -1,0 +1,18 @@
+
+/*! GlassFin-Extras: subtle spacing, hover outlines, compact cast/crew */
+:root {
+  --gf-card-outline: rgba(255,255,255,.22);
+}
+.cardScalable:hover .cardOverlayButton, .card:hover .cardOverlayButton {
+  outline: 2px solid var(--gf-card-outline);
+  outline-offset: -2px;
+}
+.castContent, .personCard, .listItem {
+  gap: .25rem;
+}
+/* Smaller cast/crew avatar size */
+.personCard .cardImageContainer, .personCard .cardImage {
+  max-width: 96px;
+  max-height: 96px;
+  border-radius: 50%;
+}

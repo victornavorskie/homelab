@@ -1,0 +1,9 @@
+
+/*! GlassFin-Dark (default) */
+:root {
+  --gf-bg: #0b0e12;
+  --gf-fg: #e7ecf2;
+  --gf-muted: #9aa7b6;
+  --gf-accent-h: 210; --gf-accent-s: 100%; --gf-accent-l: 60%;
+  --gf-glass-blur: 14px; --gf-glass-alpha: .14;
+}

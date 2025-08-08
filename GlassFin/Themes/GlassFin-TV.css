@@ -1,0 +1,6 @@
+
+/*! GlassFin-TV (reduced blur for webOS/TV browsers) */
+:root {
+  --gf-glass-blur: 0px;
+  --gf-glass-alpha: .10;
+}

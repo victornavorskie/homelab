@@ -1,0 +1,15 @@
+
+/*! GlassFin-Neon (teal/purple) */
+:root {
+  --gf-bg: #07070a;
+  --gf-fg: #f0f6ff;
+  --gf-muted: #a5b0c2;
+  --gf-accent-h: 290; --gf-accent-s: 90%; --gf-accent-l: 65%; /* purple */
+  --gf-glass-blur: 18px; --gf-glass-alpha: .18;
+}
+body {
+  background:
+    radial-gradient(1200px 700px at 15% 0%, rgba(160,35,200,.20), transparent 60%),
+    radial-gradient(900px 600px at 100% 100%, rgba(0,220,200,.16), transparent 50%),
+    var(--gf-bg);
+}

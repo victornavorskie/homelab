@@ -1,0 +1,185 @@
+
+/*!
+ * GlassFin — Jellyfin glassy dark theme (modular, multi-flavor)
+ * Author: ChatGPT (per user request)
+ * Version: 1.0.0
+ *
+ * Structure inspired by LitCastVlog/Flow modular approach (base + extras + options + themes).
+ * You'll select a flavor by importing one of the files in /Themes after this base.
+ *
+ * NOTE: Host these files yourself (Nginx/GitHub Pages/any static host) and paste @import URLs in Jellyfin:
+ *  - Server-wide: Dashboard → General → Branding → Custom CSS
+ *  - Per-client:  Settings → Display → Custom CSS (optionally disable server-provided CSS)
+ */
+
+/* === FONTS ================================================================ */
+/* Preferred Arabic UI font (user choice). Put your Arslan Wessam B .woff2 under ./fonts and uncomment.
+@font-face {
+  font-family: "Arslan Wessam B";
+  src: url("../fonts/ArslanWessamB.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+*/
+
+/* Fallback Arabic font (included from user's upload). */
+@font-face {
+  font-family: "KFGQPC HAFS";
+  src: url("../fonts/KFGQPC-Uthmanic-HAFS-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Latin UI font (system fallback if Inter not installed on client). You can host Inter if you want perfect consistency. */
+:root {
+  --font-latin: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-arabic: "Arslan Wessam B", "KFGQPC HAFS", var(--font-latin);
+}
+
+html, body {
+  font-family: var(--font-latin);
+}
+:lang(ar), [dir="rtl"], :lang(ar) * {
+  font-family: var(--font-arabic);
+}
+
+/* === THEME VARIABLES (default values are overridden by Themes/*.css) ======= */
+:root {
+  /* Base palette */
+  --gf-bg: #0b0e12;                /* page background */
+  --gf-fg: #e7ecf2;                /* base text */
+  --gf-muted: #9aa7b6;             /* secondary text */
+  --gf-accent-h: 210;              /* accent hue */
+  --gf-accent-s: 100%;             /* accent saturation */
+  --gf-accent-l: 60%;              /* accent lightness */
+
+  /* Radii, borders */
+  --gf-radius: 14px;
+  --gf-border: rgba(255,255,255,.10);
+
+  /* Glass */
+  --gf-glass-blur: 14px;
+  --gf-glass-alpha: .14;           /* panel translucency */
+  --gf-glass-stroke: rgba(255,255,255,.12);
+
+  /* Cards/overlays */
+  --gf-card-bg: rgba(255,255,255,var(--gf-glass-alpha));
+  --gf-card-bg-fallback: rgba(20,24,30,.72);
+
+  /* Shadows */
+  --gf-shadow-1: 0 6px 22px rgba(0,0,0,.35);
+  --gf-shadow-2: 0 12px 48px rgba(0,0,0,.45);
+}
+
+/* Background aesthetic */
+body {
+  color: var(--gf-fg);
+  background:
+    radial-gradient(1200px 700px at 10% 0%, rgba(35,80,160,.18), transparent 60%),
+    radial-gradient(900px 600px at 100% 100%, rgba(0,200,180,.12), transparent 50%),
+    var(--gf-bg);
+}
+
+/* Accent helpers */
+:root {
+  --gf-accent: hsl(var(--gf-accent-h) var(--gf-accent-s) var(--gf-accent-l));
+}
+a, .accent, .emby-checkbox:checked + span, .emby-toggle:checked + span {
+  color: var(--gf-accent) !important;
+}
+.button-submit, .emby-button.submit, .fab, .raised.play, .btnPlay {
+  background: var(--gf-accent) !important;
+  color: #000 !important;
+  border: 0 !important;
+}
+
+/* === GLASS PANELS: APPLY BROADLY AND SAFELY =============================== */
+@supports (backdrop-filter: blur(1px)) {
+  /* Header + Tabs + Drawers */
+  .skinHeader, .sectionTabs, .emby-tabs-slider, .mainDrawer, .paperList, .secondaryNav, .pageTitleWithLogo {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+
+  /* Dialogs / Sheets */
+  .dialog, .paper, .formDialogHeader, .formDialogFooter, .actionSheetMenu, .toast {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-2);
+  }
+
+  /* Lists / Info blocks / Dashboard sections */
+  .listItem, .infoWrapper, .dashboardSection, .content-primary, .detailSection, .overview, .emby-scroller, .scroller, .emby-select, .emby-input {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+  }
+
+  /* Detail pages primary wrapper */
+  .detailPagePrimaryContainer, .detailPageContent {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+  }
+
+  /* Now Playing / OSD */
+  .videoOsd, .nowPlayingBar, .playerStatsOverlay, .osdHeader, .osdControls, .osdFooter {
+    background: var(--gf-card-bg) !important;
+    backdrop-filter: blur(var(--gf-glass-blur));
+    -webkit-backdrop-filter: blur(var(--gf-glass-blur));
+    border: 1px solid var(--gf-glass-stroke);
+    border-radius: var(--gf-radius);
+  }
+}
+
+/* Fallback when blur is unsupported */
+@supports not (backdrop-filter: blur(1px)) {
+  .skinHeader, .sectionTabs, .emby-tabs-slider, .mainDrawer, .paperList, .secondaryNav, .pageTitleWithLogo,
+  .dialog, .paper, .formDialogHeader, .formDialogFooter, .actionSheetMenu, .toast,
+  .listItem, .infoWrapper, .dashboardSection, .content-primary, .detailSection, .overview, .emby-scroller, .scroller, .emby-select, .emby-input,
+  .detailPagePrimaryContainer, .detailPageContent,
+  .videoOsd, .nowPlayingBar, .playerStatsOverlay, .osdHeader, .osdControls, .osdFooter {
+    background: var(--gf-card-bg-fallback) !important;
+    border: 1px solid var(--gf-border);
+    border-radius: var(--gf-radius);
+    box-shadow: var(--gf-shadow-1);
+  }
+}
+
+/* Avoid blurring media */
+img, video, .itemBackdrop::before, .cardImage, .backdropImage, .detailImageContainer {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Cards polish */
+.cardContent, .cardBox, .cardScalable, .cardOverlayContainer {
+  border-radius: calc(var(--gf-radius) - 2px);
+  overflow: hidden;
+}
+
+/* Inputs */
+.emby-input, .emby-select {
+  color: var(--gf-fg) !important;
+}
+.emby-input::placeholder { color: var(--gf-muted) !important; }
+
+/* RTL refinements */
+:root[dir="rtl"] .sectionTabs, :root[dir="rtl"] .listItem { direction: rtl; }
+
+/* === END MAIN ============================================================= */

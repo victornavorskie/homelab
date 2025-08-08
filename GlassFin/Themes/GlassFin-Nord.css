@@ -1,0 +1,9 @@
+
+/*! GlassFin-Nord */
+:root {
+  --gf-bg: #0b1220;
+  --gf-fg: #e5eff7;
+  --gf-muted: #9fb0c3;
+  --gf-accent-h: 220; --gf-accent-s: 80%; --gf-accent-l: 68%; /* frost blue */
+  --gf-glass-blur: 16px; --gf-glass-alpha: .16;
+}
