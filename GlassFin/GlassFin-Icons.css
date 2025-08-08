@@ -1,28 +1,34 @@
-
-/*! GlassFin-Icons: Provider badges (IMDb/TMDb/TVDB) — v1 uses styled text badges.
-   Replace later with SVG logos if you prefer.
-*/
+/*! GlassFin-Icons: Provider badges (IMDb/TMDb/TVDB) — v2 uses SVG icons. */
 a[href*="imdb.com"]::before,
 a[href*="themoviedb.org"]::before,
 a[href*="thetvdb.com"]::before {
-  display:inline-block;
-  margin-inline-end:.35em;
-  padding:.12em .45em;
-  border-radius:.35em;
-  font-weight:700;
-  font-size:.85em;
-  line-height:1;
+  content: "";
+  display: inline-block;
+  margin-inline-end: 0.35em;
+  width: 1.5em;
+  height: 1.5em;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
 }
 
 a[href*="imdb.com"]::before {
-  content:"IMDb";
-  background:#f5c518; color:#000;
+  background-color: #f5c518;
+  -webkit-mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/imdb.svg");
+  mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/imdb.svg");
 }
+
 a[href*="themoviedb.org"]::before {
-  content:"TMDb";
-  background:#01b4e4; color:#001d2d;
+  background-color: #01b4e4;
+  -webkit-mask-image: url("https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded9042015820c17f5c790953a59771233c9272abe27c7bbbeb7.svg");
+  mask-image: url("https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded9042015820c17f5c790953a59771233c9272abe27c7bbbeb7.svg");
 }
+
 a[href*="thetvdb.com"]::before {
-  content:"TVDB";
-  background:#00a4dc; color:#001a26;
+  background-color: #00a4dc;
+  -webkit-mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/thetvdb.svg");
+  mask-image: url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/thetvdb.svg");
 }
